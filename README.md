@@ -15,4 +15,5 @@ Learn React, Redux, Node.js, MongoDB, GraphQL and TypeScript in one go! This cou
 * Part 7: React router, custom hooks, styling app with CSS and webpack
 * Part 8: GraphQL
 * Part 9: Typescript
+
 By the University of Helsinki and Houston Inc. https://fullstackopen.com/en
