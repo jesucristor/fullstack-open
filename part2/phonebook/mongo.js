@@ -47,7 +47,7 @@ if (process.argv.length > 2 && process.argv.length <= 5) {
         Person.find({}).then(result => {
             console.log('phonebook:');
             result.forEach(person => {
-                console.log(person.name)
+                console.log(`${person.name} ${person.number}`)
             })
 
             mongoose.connection.close()
