@@ -6,13 +6,15 @@ if (process.argv.length < 3) {
 }
 
 if (process.argv.length > 2 && process.argv.length <= 5) {
-
     const password = process.argv[2]
+
+    const name = process.argv[3]
+    const number = process.argv[4]
 
     const url = `mongodb+srv://jesucristor:${password}@cluster0.aiv68.mongodb.net/phonebook?retryWrites=true&w=majority`
 
     mongoose
-        .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+        .connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
         .then(() => {
             console.log('connected to DB');
         })
@@ -28,15 +30,17 @@ if (process.argv.length > 2 && process.argv.length <= 5) {
 
     const Person = mongoose.model('Person', personSchema)
 
-    const person = new Person({
-        name: process.argv[3],
-        number: process.argv[4]
-    })
+    if (name && number) {
+        const person = new Person({
+            name: name,
+            number: number
+        })
 
-    person.save().then(result => {
-        console.log(result)
-        mongoose.connection.close()
-    })
+        person.save().then(result => {
+            console.log(result)
+            mongoose.connection.close()
+        })
+    }
 
     if (process.argv.length === 3) {
 
